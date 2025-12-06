@@ -11,12 +11,6 @@ app.use("/getUserData", (req, res) => {
     res.status(500).send("some Error contact support team");
   }
 });
-app.use("/", (err, req, res, next) => {
-  if (err) {
-    res.status(500).send("some Error occured");
-  }
-});
-
 app.get("/user", userAuth, (req, res) => {
   res.send("User Data sent");
 });
@@ -25,6 +19,11 @@ app.get("/admin/getAllData", (req, res) => {
 });
 app.get("/admin/deleteUser", (req, res) => {
   res.send("Deleted a user");
+});
+app.use("/", (err, req, res, next) => {
+  if (err) {
+    res.status(500).send("some Error occured");
+  }
 });
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
